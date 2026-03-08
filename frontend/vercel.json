@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "./pages/home.jsx"
+      "dest": "/index.html"
     }
   ]
 }

@@ -6,16 +6,41 @@ function Home() {
 
   const [idea, setIdea] = useState("");
   const [open, setOpen] = useState(false);
+  const [result, setResult] = useState("");
   const navigate = useNavigate();
 
   const storedUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const loggedIn = storedUser !== null;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Startup Idea:", idea);
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
+    const response = await fetch("http://127.0.0.1:8000/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ idea: idea })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      navigate("/result", {
+        state: {
+          idea: idea,
+          analysis: data.analysis
+        }
+      });
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
   // Example user (later replace with real login data)
   
 
@@ -101,7 +126,7 @@ function Home() {
         </form>
 
       </div>
-
+        
     </div>
   );
 }

@@ -20,7 +20,7 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -28,19 +28,35 @@ function Signup() {
       return;
     }
 
-    const user = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password
-    };
+    try {
 
-    // Save user temporarily
-    localStorage.setItem("user", JSON.stringify(user));
+      const response = await fetch("http://127.0.0.1:8000/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        })
+      });
 
-    alert("Signup successful!");
+      const data = await response.json();
 
-    // Redirect to login page
-    navigate("/login");
+      if (!response.ok) {
+        alert(data.detail || "Signup failed");
+        return;
+      }
+
+      alert("Signup successful!");
+
+      navigate("/login");
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error");
+    }
   };
 
   return (

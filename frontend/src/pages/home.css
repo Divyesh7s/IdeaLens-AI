@@ -5,10 +5,15 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+  overflow-x:hidden;
+}
+
 .home-container{
   min-height:100vh;
   background:#0f0f0f;
   color:white;
+  width:100%;
 }
 
 /* Navbar */
@@ -17,10 +22,9 @@
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 40px;
+  padding:20px 5%;
   background:#111;
   border-bottom:1px solid #222;
-  flex-wrap:wrap;
 }
 
 .logo{
@@ -37,13 +41,12 @@
 .nav-links{
   display:flex;
   list-style:none;
-  gap:30px;
+  gap:25px;
 }
 
 .nav-links li{
   cursor:pointer;
   color:#ccc;
-  font-size:15px;
 }
 
 .nav-links li:hover{
@@ -64,7 +67,7 @@
 
 .title_name{
   color:#22c55e;
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 
 .hero-title{
@@ -76,7 +79,7 @@
   max-width:600px;
   color:#aaa;
   margin-bottom:30px;
-  line-height:1.5;
+  padding:0 10px;
 }
 
 /* Idea form */
@@ -84,11 +87,13 @@
 .idea-form{
   display:flex;
   gap:10px;
+  width:100%;
+  max-width:500px;
 }
 
 .idea-form input{
+  flex:1;
   padding:12px;
-  width:320px;
   border:none;
   border-radius:6px;
   background:#1f1f1f;
@@ -158,27 +163,16 @@
 }
 
 
-/* ---------------- MOBILE ---------------- */
+/* -------- TABLET -------- */
 
 @media(max-width:768px){
 
 .navbar{
-  flex-direction:column;
-  gap:10px;
-  padding:15px;
-}
-
-.nav-right{
-  width:100%;
-  justify-content:space-between;
-}
-
-.nav-links{
-  gap:15px;
+  padding:15px 20px;
 }
 
 .hero-title{
-  font-size:28px;
+  font-size:30px;
 }
 
 .hero-desc{
@@ -187,12 +181,6 @@
 
 .idea-form{
   flex-direction:column;
-  width:100%;
-  max-width:350px;
-}
-
-.idea-form input{
-  width:100%;
 }
 
 .idea-form button{
@@ -201,7 +189,8 @@
 
 }
 
-/* ---------------- SMALL MOBILE ---------------- */
+
+/* -------- MOBILE -------- */
 
 @media(max-width:480px){
 
@@ -209,20 +198,20 @@
   font-size:18px;
 }
 
+.nav-links{
+  display:none;
+}
+
 .hero-title{
-  font-size:22px;
+  font-size:24px;
 }
 
 .hero-desc{
   font-size:13px;
 }
 
-.nav-links{
-  display:none;   /* hide links on very small screens */
-}
-
-.dropdown{
-  right:-10px;
+.idea-form{
+  width:100%;
 }
 
 }

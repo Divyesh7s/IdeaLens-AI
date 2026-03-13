@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./home.css";
 import { useNavigate } from "react-router-dom";
+import { RiAccountCircleLine } from "react-icons/ri";
 
 function Home() {
 
@@ -52,12 +53,12 @@ function Home() {
       {/* Navbar */}
 
       <nav className="navbar">
-        <h2 className="logo">IdeaLens AI</h2>
+        <h2 className="logo">IdeaLens Ai</h2>
       <div className="nav-right">
         <ul className="nav-links">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li onClick={() => navigate("/")}>Home</li>
+          <li onClick={() => navigate("/about")}>About</li>
+          <li onClick={() => navigate("/contact")}>Contact</li>
         </ul>
 
         {/* User Icon */}
@@ -68,7 +69,7 @@ function Home() {
             className="user-icon"
             onClick={() => setOpen(!open)}
           >
-            👤
+            <RiAccountCircleLine size={28} color="#64748b" />
           </div>
 
           {open && (

@@ -20,10 +20,12 @@
   padding:20px 40px;
   background:#111;
   border-bottom:1px solid #222;
+  flex-wrap:wrap;
 }
 
 .logo{
   color:#22c55e;
+  font-size:22px;
 }
 
 .nav-right{
@@ -41,6 +43,7 @@
 .nav-links li{
   cursor:pointer;
   color:#ccc;
+  font-size:15px;
 }
 
 .nav-links li:hover{
@@ -50,7 +53,7 @@
 /* Hero */
 
 .hero{
-  height:80vh;
+  min-height:80vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -58,9 +61,10 @@
   text-align:center;
   padding:20px;
 }
+
 .title_name{
-    color: #22c55e;
-    margin-bottom: 15px;
+  color:#22c55e;
+  margin-bottom:15px;
 }
 
 .hero-title{
@@ -72,6 +76,7 @@
   max-width:600px;
   color:#aaa;
   margin-bottom:30px;
+  line-height:1.5;
 }
 
 /* Idea form */
@@ -107,6 +112,7 @@
 .idea-form button:hover{
   background:#16a34a;
 }
+
 /* user menu */
 
 .user-menu{
@@ -150,20 +156,73 @@
   color:white;
   cursor:pointer;
 }
-/* Mobile */
+
+
+/* ---------------- MOBILE ---------------- */
 
 @media(max-width:768px){
+
+.navbar{
+  flex-direction:column;
+  gap:10px;
+  padding:15px;
+}
+
+.nav-right{
+  width:100%;
+  justify-content:space-between;
+}
+
+.nav-links{
+  gap:15px;
+}
 
 .hero-title{
   font-size:28px;
 }
 
+.hero-desc{
+  font-size:14px;
+}
+
 .idea-form{
   flex-direction:column;
+  width:100%;
+  max-width:350px;
 }
 
 .idea-form input{
   width:100%;
+}
+
+.idea-form button{
+  width:100%;
+}
+
+}
+
+/* ---------------- SMALL MOBILE ---------------- */
+
+@media(max-width:480px){
+
+.logo{
+  font-size:18px;
+}
+
+.hero-title{
+  font-size:22px;
+}
+
+.hero-desc{
+  font-size:13px;
+}
+
+.nav-links{
+  display:none;   /* hide links on very small screens */
+}
+
+.dropdown{
+  right:-10px;
 }
 
 }

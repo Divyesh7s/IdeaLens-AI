@@ -12,10 +12,10 @@ import os
 
 load_dotenv();
 app = FastAPI()
-
+models.Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:5173"],  # your React dev URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,6 +28,15 @@ client = OpenAI(
 
 class Idea(BaseModel):
     idea: str
+
+class SignupRequest(BaseModel):
+    name: str
+    email: str
+    password: str
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
 
 @app.post("/analyze")
 def analyze(data: Idea):
@@ -55,9 +64,9 @@ Suggested Improvements
         return {"analysis": response.choices[0].message.content}  
 
     except Exception as e:
-        return {"error": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
 
-models.Base.metadata.create_all(bind=engine)
+
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -70,18 +79,18 @@ def get_db():
 
 
 @app.post("/signup")
-def signup(name: str, email: str, password: str, db: Session = Depends(get_db)):
+def signup(user: SignupRequest, db: Session = Depends(get_db)):
 
-    existing_user = db.query(models.User).filter(models.User.email == email).first()
+    existing_user = db.query(models.User).filter(models.User.email == user.email).first()
 
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    hashed_password = pwd_context.hash(password)
+    hashed_password = pwd_context.hash(user.password)
 
     new_user = models.User(
-        name=name,
-        email=email,
+        name=user.name,
+        email=user.email,
         password=hashed_password
     )
 
@@ -92,17 +101,16 @@ def signup(name: str, email: str, password: str, db: Session = Depends(get_db)):
     return {"message": "User created successfully"}
 
 @app.post("/login")
-def login(email: str, password: str, db: Session = Depends(get_db)):
+def login(user: LoginRequest, db: Session = Depends(get_db)):
+    user_db = db.query(models.User).filter(models.User.email == user.email).first()
 
-    user = db.query(models.User).filter(models.User.email == email).first()
-
-    if not user:
+    if not user_db:
         raise HTTPException(status_code=400, detail="Invalid email")
 
-    if not pwd_context.verify(password, user.password):
+    if not pwd_context.verify(user.password, user_db.password):
         raise HTTPException(status_code=400, detail="Invalid password")
 
     return {
-        "name": user.name,
-        "email": user.email
+        "name": user_db.name,
+        "email": user_db.email
     }

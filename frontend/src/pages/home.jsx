@@ -63,38 +63,8 @@ function Home() {
 
         {/* User Icon */}
 
-        <div className="user-menu">
-
-          <div
-            className="user-icon"
-            onClick={() => setOpen(!open)}
-          >
-            <RiAccountCircleLine size={28} color="#64748b" />
-          </div>
-
-          {open && (
-            <div className="dropdown">
-
-              {loggedIn ? (
-                <>
-                  <p className="user-name">{storedUser.name}</p>
-                  <p className="user-email">{storedUser.email}</p>
-
-                  <button className="logout-btn"
-                    onClick={() => {
-                    localStorage.removeItem("loggedInUser");
-                    navigate("/login");
-                  }}>Logout</button>
-                </>
-              ) : (
-                <button className="login-btn"
-                  onClick={() => navigate("/login")}>Login</button>
-              )}
-
-            </div>
-          )}
-         </div>
-        </div>
+       
+      </div>
 
       </nav>
 

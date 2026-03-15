@@ -100,18 +100,7 @@ html, body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.user-name {
-  font-weight: 600;
-  font-size: 14px;
-  color: #f1f5f9;
-  margin-bottom: 4px;
-}
 
-.user-email {
-  font-size: 12px;
-  color: #64748b;
-  margin-bottom: 14px;
-}
 
 .logout-btn,
 .login-btn {
@@ -167,13 +156,18 @@ html, body {
   font-weight: 700;
   margin-bottom: 20px;
   line-height: 1.2;
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+   background: linear-gradient(90deg, #22c55e, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: fadeUp 0.6s ease 0.2s both;
 }
-
+.title_name{
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .hero-desc {
   max-width: 560px;
   color: #64748b;

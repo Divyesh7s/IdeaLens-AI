@@ -26,9 +26,7 @@ function Contact() {
                 <li onClick={() => navigate("/about")}>About</li>
                 <li onClick={() => navigate("/contact")}>Contact</li>
                 </ul>
-                <div className="user-menu">
-                <RiAccountCircleLine size={28} color="#64748b" />
-                </div>
+                
             </div>
         </nav>
       <div className="contact-header">

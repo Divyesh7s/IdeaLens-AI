@@ -16,9 +16,7 @@ function About() {
             <li onClick={() => navigate("/about")}>About</li>
             <li onClick={() => navigate("/contact")}>Contact</li>
           </ul>
-          <div className="user-menu">
-            <RiAccountCircleLine size={28} color="#ccc" />
-          </div>
+          
         </div>
       </nav>
 

@@ -15,7 +15,9 @@ app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # your React dev URL
+    allow_origins=["https://idea-lens-ai.vercel.app",
+        "http://localhost:5173",  # for local dev
+        "http://localhost:3000",],  # your React dev URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
